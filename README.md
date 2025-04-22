@@ -57,6 +57,78 @@ This microservice is part of the SchoolBus Management Platform and handles all s
 - **API Gateway**: Apigee
 - **Deployment**: Google Kubernetes Engine (GKE)
 
+## Local Development
+
+### Prerequisites
+
+- Node.js (v18+)
+- npm or yarn
+- PostgreSQL database
+- Firebase project (for authentication)
+
+### Setup
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/stefantirlea/schoolbus-school-microservice.git
+   cd schoolbus-school-microservice
+   ```
+
+2. Install dependencies:
+   ```bash
+   cd src/backend
+   npm install
+   ```
+
+3. Configure environment variables:
+   ```bash
+   cp .env.example .env
+   # Edit .env with your local configuration
+   ```
+
+4. Run the development server:
+   ```bash
+   npm run start:dev
+   ```
+
+### Database Setup
+
+1. Create a PostgreSQL database named `schoolbus_schools`
+
+2. The tables will be automatically created on application startup (in development mode)
+
+### Firebase Authentication Setup
+
+1. Create a Firebase project at [Firebase Console](https://console.firebase.google.com/)
+
+2. Enable Email/Password authentication
+
+3. Generate a service account key:
+   - Go to Project Settings → Service Accounts → Generate new private key
+   - Save the key file as `firebase-key.json` in the root directory or set the path in your `.env` file
+
+## API Endpoints
+
+### Health Check
+- `GET /api/health` - Check service health
+
+### Schools API (Protected by Firebase Auth)
+- `GET /api/schools` - Get all schools
+- `GET /api/schools/:id` - Get a specific school
+- `POST /api/schools` - Create a new school
+- `PUT /api/schools/:id` - Update a school
+- `DELETE /api/schools/:id` - Delete a school (soft delete)
+
+## Running with Docker
+
+Build and run the Docker container:
+
+```bash
+# From the repository root
+docker build -t schoolbus-school-service .
+docker run -p 3000:3000 --env-file ./src/backend/.env schoolbus-school-service
+```
+
 ## Getting Started
 
 For complete deployment instructions, please see the [DEPLOYMENT.md](./DEPLOYMENT.md) document.
