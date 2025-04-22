@@ -2,6 +2,8 @@
 
 This repository contains the School Microservice for the SchoolBus Management Platform, designed to manage school data in a secure and scalable way.
 
+> **Architecture Note**: The frontend code has been moved to a dedicated repository at [schoolbus-frontend](https://github.com/stefantirlea/schoolbus-frontend). This repository now focuses exclusively on the backend API.
+
 ## Deployment Status & Progress Tracking
 
 We're implementing the deployment following a phased approach. Below is our current progress:
